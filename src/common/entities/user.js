@@ -1,0 +1,47 @@
+const Comentario = require('../entities/comentario')
+const Memoria = require('../entities/memoria')
+
+class User {
+    constructor({ userid, name, email, password, address, city, roleid }) {
+        this.userid = userid
+        this.name = name
+        this.email = email
+        this.password = password
+        this.address = address
+        this.city = city
+        this.roleid = roleid
+    }
+
+    static validateUser(user) {
+        if (!user.name) {
+            throw new Error('Name is required')
+        }
+        if (!user.email) {
+            throw new Error('Email is required')
+        }
+        if (!user.password) {
+            throw new Error('Password is required')
+        }
+        if (!user.address) {
+            throw new Error('Address is required')
+        }
+        if (!user.city) {
+            throw new Error('City is required')
+        }
+        if (!user.roleid) {
+            throw new Error('Role is required')
+        }
+
+        return true
+    }
+
+    createMemory(obito) {
+        return new Memoria({ userid: this.userid, obitoid: obito.id })
+    }
+
+    createComment(obito, comment) {
+        return new Comentario({ userid: this.userid, obitoid: obito.id, comment: comment })
+    }
+}
+
+module.exports = User
