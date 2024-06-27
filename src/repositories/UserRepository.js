@@ -7,6 +7,26 @@ class UserRepository {
         this.url = url
     }
 
+    async findByEmail(email) {
+        const connection = new pg.Client(this.url)
+        await connection.connect()
+
+        const response = await connection.query({
+            text: 'SELECT * FROM "user" WHERE email = $1',
+            values: [email]
+        })
+
+        await connection.end()
+
+        const result = await response.rows[0]
+
+        if (result) {
+            return new User(result)
+        }
+
+        return null
+    }
+
     async create(user) {
         const connection = new pg.Client(this.url)
         await connection.connect()
