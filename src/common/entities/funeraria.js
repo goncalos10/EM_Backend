@@ -1,6 +1,6 @@
 class Funeraria {
-    constructor({ id, name, email, address, postalcode, city, mobilephone, phone, userid }) {
-        this.id = id
+    constructor({ funerariaid, name, email, address, postalcode, city, mobilephone, phone, userid }) {
+        this.funerariaid = funerariaid
         this.name = name
         this.email = email
         this.address = address
@@ -23,4 +23,8 @@ class Funeraria {
             funerariaid: this.id,
         }
     }
+
+
 }
+
+module.exports = Funeraria

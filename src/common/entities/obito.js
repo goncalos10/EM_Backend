@@ -32,3 +32,5 @@ class Obito {
         }
     }
 }
+
+module.exports = Obito

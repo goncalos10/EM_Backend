@@ -5,14 +5,9 @@ class CreateFunerariaCommand {
         this.funerariaRepository = funerariaRepository
     }
 
-    async execute({ name, email, address, postalcode, city, mobilephone, phone, userid }) {
+    async execute({ name, email, address, postalcode, city, mobilephone, phone, user, userid }) {
         try {
-            const funeraria = new Funeraria({ name, email, address, postalcode, city, mobilephone, phone, userid })
-            const validate = Funeraria.validateFuneraria(funeraria)
-
-            if (!validate) {
-                throw new Error('Funeraria invalid')
-            }
+            const funeraria = user.createFuneraria({ name, email, address, postalcode, city, mobilephone, phone, userid })
 
             const createdFuneraria = await this.funerariaRepository.create(funeraria)
 

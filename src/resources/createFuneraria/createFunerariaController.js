@@ -9,7 +9,7 @@ class CreateFunerariaController {
         let createFunerariaCommand = this.createFunerariaCommand
         return async function (req, res) {
             let { name, email, address, postalcode, city, mobilephone, phone, userid } = req.body
-            const funeraria = await createFunerariaCommand.execute({ name, email, address, postalcode, city, mobilephone, phone, userid })
+            const funeraria = await createFunerariaCommand.execute({ name, email, address, postalcode, city, mobilephone, phone, user: req.user, userid })
 
             if (!funeraria.success) {
                 return res.status(400).json({ error: funeraria.error })
@@ -18,3 +18,5 @@ class CreateFunerariaController {
         }
     }
 }
+
+module.exports = CreateFunerariaController

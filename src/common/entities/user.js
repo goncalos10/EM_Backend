@@ -42,6 +42,23 @@ class User {
     createComment(obito, comment) {
         return new Comentario({ userid: this.userid, obitoid: obito.id, comment: comment })
     }
+
+    createFuneraria(funeraria) {
+        if (this.roleid !== 1) {
+            throw new Error('Only adminstrators can create funerarias')
+        }
+
+        return {
+            name: funeraria.name,
+            email: funeraria.email,
+            address: funeraria.address,
+            postalcode: funeraria.postalcode,
+            city: funeraria.city,
+            mobilephone: funeraria.mobilephone,
+            phone: funeraria.phone,
+            userid: funeraria.userid
+        }
+    }
 }
 
 module.exports = User

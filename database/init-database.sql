@@ -11,7 +11,7 @@ CREATE TABLE "user" (
 CREATE TABLE funeraria (
   funerariaid SERIAL NOT NULL, 
   name        varchar(60) NOT NULL, 
-  email       varchar(100) NOT NULL, 
+  email       varchar(100) NOT NULL UNIQUE, 
   address     varchar(125) NOT NULL, 
   postalcode  varchar(15) NOT NULL, 
   city        varchar(70) NOT NULL, 
