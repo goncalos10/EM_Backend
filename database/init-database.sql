@@ -29,6 +29,8 @@ CREATE TABLE obito (
   horafuneral time(7) NOT NULL, 
   diamissa    date NOT NULL, 
   horamissa   time(7) NOT NULL,
+  igrejaid    int4 NOT NULL,
+  capelaid    int4 NOT NULL,
   url         varchar(100) NOT NULL,
   photo       varchar(100) NOT NULL, 
   PRIMARY KEY (obitoid));

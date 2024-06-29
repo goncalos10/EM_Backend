@@ -12,8 +12,8 @@ class ObitoRepository {
         await connection.connect()
 
         const response = await connection.query({
-            text: 'INSERT INTO "obito" (funerariaid, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, url, photo) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *',
-            values: [obito.funerariaid, obito.name, obito.freguesia, obito.diafuneral, obito.horafuneral, obito.diamissa, obito.horamissa, obito.url, obito.photo]
+            text: 'INSERT INTO "obito" (funerariaid, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, url, photo, igrejaid, capelaid) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *',
+            values: [obito.funerariaid, obito.name, obito.freguesia, obito.diafuneral, obito.horafuneral, obito.diamissa, obito.horamissa, obito.url, obito.photo, obito.igrejaid, obito.capelaid]
         })
 
         await connection.end()

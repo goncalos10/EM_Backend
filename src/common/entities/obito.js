@@ -1,5 +1,5 @@
 class Obito {
-    constructor({ id, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, photo, url, funerariaid }) {
+    constructor({ id, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, photo, url, funerariaid }) {
         this.id = id
         this.name = name
         this.freguesia = freguesia
@@ -7,6 +7,8 @@ class Obito {
         this.horafuneral = horafuneral
         this.diamissa = diamissa
         this.horamissa = horamissa
+        this.igrejaid = igrejaid
+        this.capelaid = capelaid
         this.photo = photo
         this.url = url
         this.funerariaid = funerariaid
@@ -30,6 +32,15 @@ class Obito {
         }
         if (!obito.horamissa) {
             throw new Error('Hora da missa is required')
+        }
+        if (!obito.igrejaid) {
+            throw new Error('Igreja is required')
+        }
+        if (!obito.capelaid) {
+            throw new Error('Capela is required')
+        }
+        if (!obito.funerariaid) {
+            throw new Error('Funeraria is required')
         }
     }
 }
