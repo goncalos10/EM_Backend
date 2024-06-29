@@ -9,11 +9,17 @@ module.exports = {
     comparePassword: async (password, hash) => {
         return await bcrypt.compare(password, hash)
     },
-    generateJWT: (id, name ,email ,roleid) => {
+    generateJWT: (id, name, email, roleid) => {
         return jwt.sign({ id, name, email, roleid }, process.env.JWT_SECRET, { expiresIn: '24h' })
     },
 
-    verifyJWTToken : (token) => {
+    verifyJWTToken: (token) => {
         return jwt.verify(token, process.env.JWT_SECRET)
+    },
+
+    generateURL: (name) => {
+        name = name.replace(/ /g, '-').toLowerCase()
+        random = Math.floor(Math.random() * 999999)
+        return name + '-' + random
     }
 }

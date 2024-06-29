@@ -1,5 +1,5 @@
 class Obito {
-    constructor({ id, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, photo, funerariaid }) {
+    constructor({ id, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, photo, url, funerariaid }) {
         this.id = id
         this.name = name
         this.freguesia = freguesia
@@ -8,6 +8,7 @@ class Obito {
         this.diamissa = diamissa
         this.horamissa = horamissa
         this.photo = photo
+        this.url = url
         this.funerariaid = funerariaid
     }
 
