@@ -43,6 +43,17 @@ class User {
         return new Comentario({ userid: this.userid, obitoid: obito.id, comment: comment })
     }
 
+    edit(user) {
+        return {
+            userid: user.userid,
+            name: user.name,
+            email: user.email,
+            address: user.address,
+            city: user.city,
+            roleid: user.roleid
+        }
+    }
+
     createFuneraria(funeraria) {
         if (this.roleid !== 1) {
             throw new Error('Only adminstrators can create funerarias')

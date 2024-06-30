@@ -14,7 +14,7 @@ class DeleteFunerariaController {
             if (!funeraria.success) {
                 return res.status(400).json({ error: funeraria.error })
             }
-            return res.status(200).json(funeraria)
+            return res.status(204).json(funeraria)
         }
     }
 }

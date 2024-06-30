@@ -44,6 +44,38 @@ class UserRepository {
 
     }
 
+    async edit(user) {
+        const connection = new pg.Client(this.url)
+        await connection.connect()
+
+        const response = await connection.query({
+            text: 'UPDATE "user" SET name = $1, email = $2, password = $3, address = $4, city = $5, roleid = $6 WHERE userid = $7 RETURNING *',
+            values: [user.name, user.email, user.password, user.address, user.city, user.roleid, user.userid]
+        })
+
+        await connection.end()
+
+        const result = await response.rows[0]
+
+        return new User(result)
+
+    }
+
+    async delete(userid) {
+        const connection = new pg.Client(this.url)
+        await connection.connect()
+
+        await connection.query({
+            text: 'DELETE FROM "user" WHERE userid = $1',
+            values: [userid]
+        })
+
+        await connection.end()
+
+        return true
+
+    }
+
 }
 
 module.exports = UserRepository
