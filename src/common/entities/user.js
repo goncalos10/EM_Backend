@@ -59,6 +59,33 @@ class User {
             userid: funeraria.userid
         }
     }
+
+    editFuneraria(funeraria) {
+        if (this.roleid !== 1) {
+            throw new Error('Only adminstrators can edit funerarias')
+        }
+        return {
+            funerariaid: funeraria.funerariaid,
+            name: funeraria.name,
+            email: funeraria.email,
+            address: funeraria.address,
+            postalcode: funeraria.postalcode,
+            city: funeraria.city,
+            mobilephone: funeraria.mobilephone,
+            phone: funeraria.phone,
+            userid: funeraria.userid
+        }
+    }
+
+    deleteFuneraria(funerariaid) {
+        if (this.roleid !== 1) {
+            throw new Error('Only adminstrators can delete funerarias')
+        }
+        return {
+            funerariaid
+        }
+    }
+
 }
 
 module.exports = User
