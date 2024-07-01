@@ -41,7 +41,8 @@ CREATE TABLE local (
   name    varchar(75) NOT NULL, 
   address varchar(75) NOT NULL, 
   city    varchar(75) NOT NULL, 
-  tipo    int2 NOT NULL, 
+  tipo    int2 NOT NULL,
+  deleted bool DEFAULT false,
   PRIMARY KEY (localid));
 
 CREATE TABLE obitolocal (

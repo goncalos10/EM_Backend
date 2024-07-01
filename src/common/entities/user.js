@@ -1,5 +1,6 @@
 const Comentario = require('../entities/comentario')
 const Memoria = require('../entities/memoria')
+const Local = require('../entities/local')
 
 class User {
     constructor({ userid, name, email, password, address, city, roleid }) {
@@ -33,6 +34,10 @@ class User {
         }
 
         return true
+    }
+
+    createLocal(local) {
+        return new Local({ name: local.name, address: local.address, city: local.city, tipo: local.tipo })
     }
 
     createMemory(obito) {
