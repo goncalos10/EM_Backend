@@ -7,6 +7,23 @@ class ObitoRepository {
         this.url = url
     }
 
+    async findByID(obitoid) {
+        const connection = new pg.Client(this.url)
+        await connection.connect()
+
+        const response = await connection.query({
+            text: 'SELECT * FROM "obito" WHERE obitoid = $1',
+            values: [obitoid]
+        })
+
+        await connection.end()
+
+        const result = await response.rows[0]
+
+        return new Obito(result)
+
+    }
+
     async create(obito) {
         const connection = new pg.Client(this.url)
         await connection.connect()
@@ -40,6 +57,26 @@ class ObitoRepository {
         const result = await response.rows[0]
 
         console.log(result)
+
+        if (result) {
+            return new Obito(result)
+        }
+
+        return null
+    }
+
+    async changePhoto(obito) {
+        const connection = new pg.Client(this.url)
+        await connection.connect()
+
+        const response = await connection.query({
+            text: 'UPDATE "obito" SET photo = $1 WHERE obitoid = $2 RETURNING *',
+            values: [obito.photo, obito.obitoid]
+        })
+
+        await connection.end()
+
+        const result = await response.rows[0]
 
         if (result) {
             return new Obito(result)

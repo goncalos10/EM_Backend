@@ -33,7 +33,7 @@ CREATE TABLE obito (
   igrejaid    int4 NOT NULL,
   capelaid    int4 NOT NULL,
   url         varchar(100) NOT NULL,
-  photo       varchar(100) NOT NULL, 
+  photo       varchar(100) DEFAULT NULL, 
   PRIMARY KEY (obitoid));
 
 CREATE TABLE local (

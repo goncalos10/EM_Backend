@@ -10,6 +10,8 @@ const GetMyObitosController = require('../resources/getMyObitos/getMyObitosContr
 const GetMyObitosQuery = require('../resources/getMyObitos/getMyObitosQuery')
 const EditObitoCommand = require('../resources/editObito/editObitoCommand')
 const EditObitoController = require('../resources/editObito/editObitoController')
+const CreateObitoPhotoCommand = require('../resources/createObitoPhoto/createObitoPhotoCommand')
+const CreateObitoPhotoController = require('../resources/createObitoPhoto/createObitoPhotoController')
 require('dotenv').config()
 
 const router = express.Router()
@@ -23,13 +25,14 @@ const getMyObitosQuery = new GetMyObitosQuery(obitoRepository)
 const getMyObitosController = new GetMyObitosController(getMyObitosQuery, getMyFunerariasQuery)
 const editObitoCommand = new EditObitoCommand(obitoRepository, funerariaRepository)
 const editObitoController = new EditObitoController(editObitoCommand)
-
+const createObitoPhotoCommand = new CreateObitoPhotoCommand(obitoRepository)
+const createObitoPhotoController = new CreateObitoPhotoController(createObitoPhotoCommand)
+const multerconfig = require('../common/multer-config')
 const { validateUser } = require('../middlewares/ValidateUser')
 
 router.post('/', validateUser, createObitoController.execute())
 router.get('/:funerariaid', validateUser, getMyObitosController.execute())
 router.put('/edit/:obitoid', validateUser, editObitoController.execute())
-
-
+router.put('/photo/:obitoid', validateUser, multerconfig, createObitoPhotoController.execute())
 
 module.exports = router

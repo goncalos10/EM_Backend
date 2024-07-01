@@ -14,6 +14,7 @@ app.use('/users', userRoutes)
 app.use('/funerarias', funerariaRoutes)
 app.use('/obitos', obitoRoutes)
 app.use('/admin', adminRoutes)
+app.use('/uploads', express.static('uploads'))
 
 app.listen(5000, "0.0.0.0", () => {
     console.log('Server running on port 5000')
