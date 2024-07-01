@@ -24,6 +24,30 @@ class ObitoRepository {
 
     }
 
+    async edit(obito) {
+        const connection = new pg.Client(this.url)
+        await connection.connect()
+
+        console.log(obito)
+
+        const response = await connection.query({
+            text: 'UPDATE "obito" SET name = $1, freguesia = $2, diafuneral = $3, horafuneral = $4, diamissa = $5, horamissa = $6, photo = $7, igrejaid = $8, capelaid = $9 WHERE obitoid = $10 RETURNING *',
+            values: [obito.name, obito.freguesia, obito.diafuneral, obito.horafuneral, obito.diamissa, obito.horamissa, obito.photo, obito.igrejaid, obito.capelaid, obito.obitoid]
+        })
+
+        await connection.end()
+
+        const result = await response.rows[0]
+
+        console.log(result)
+
+        if (result) {
+            return new Obito(result)
+        }
+
+        return null
+    }
+
     async findObitosByFunerariaID(funerariaid) {
         const connection = new pg.Client(this.url)
         await connection.connect()

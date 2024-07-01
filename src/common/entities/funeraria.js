@@ -24,6 +24,30 @@ class Funeraria {
         }
     }
 
+    editObito(obito) {
+        return {
+            obitoid: obito.obitoid,
+            name: obito.name,
+            freguesia: obito.freguesia,
+            diafuneral: obito.diafuneral,
+            horafuneral: obito.horafuneral,
+            diamissa: obito.diamissa,
+            horamissa: obito.horamissa,
+            photo: obito.photo,
+            funerariaid: this.id,
+        }
+    }
+
+    deleteObito(obitoid) {
+        if (this.roleid !== 2) {
+            throw new Error('Only funerarias can delete obitos')
+        }
+        return {
+            obitoid
+        }
+
+    }
+
 
 }
 

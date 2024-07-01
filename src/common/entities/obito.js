@@ -1,6 +1,6 @@
 class Obito {
-    constructor({ id, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, photo, url, funerariaid }) {
-        this.id = id
+    constructor({ obitoid, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, photo, url, funerariaid }) {
+        this.obitoid = obitoid
         this.name = name
         this.freguesia = freguesia
         this.diafuneral = diafuneral

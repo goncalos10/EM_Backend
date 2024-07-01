@@ -17,7 +17,8 @@ CREATE TABLE funeraria (
   city        varchar(70) NOT NULL, 
   mobilephone varchar(30) NOT NULL, 
   phone       varchar(15) NOT NULL, 
-  userid      int4 NOT NULL, 
+  userid      int4 NOT NULL,
+  deleted     bool DEFAULT false,
   PRIMARY KEY (funerariaid));
 
 CREATE TABLE obito (

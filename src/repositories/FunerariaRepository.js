@@ -67,7 +67,7 @@ class FunerariaRepository {
         console.log(funerariaid)
 
         await connection.query({
-            text: 'DELETE FROM "funeraria" WHERE funerariaid = $1',
+            text: 'UPDATE "funeraria" SET deleted = true WHERE funerariaid = $1',
             values: [funerariaid]
         })
 
@@ -82,7 +82,7 @@ class FunerariaRepository {
         await connection.connect()
 
         const response = await connection.query({
-            text: 'SELECT * FROM "funeraria" WHERE userid = $1',
+            text: 'SELECT * FROM "funeraria" WHERE userid = $1 AND deleted = false',
             values: [userid]
         })
 
