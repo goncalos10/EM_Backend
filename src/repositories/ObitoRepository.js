@@ -12,8 +12,8 @@ class ObitoRepository {
         await connection.connect()
 
         const response = await connection.query({
-            text: 'INSERT INTO "obito" (funerariaid, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, url, photo, igrejaid, capelaid) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING *',
-            values: [obito.funerariaid, obito.name, obito.freguesia, obito.diafuneral, obito.horafuneral, obito.diamissa, obito.horamissa, obito.url, obito.photo, obito.igrejaid, obito.capelaid]
+            text: 'INSERT INTO "obito" (funerariaid, name, freguesia, diafuneral, horafuneral, diamissa, horamissa, url, igrejaid, capelaid) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING *',
+            values: [obito.funerariaid, obito.name, obito.freguesia, obito.diafuneral, obito.horafuneral, obito.diamissa, obito.horamissa, obito.url, obito.igrejaid, obito.capelaid]
         })
 
         await connection.end()
@@ -31,8 +31,8 @@ class ObitoRepository {
         console.log(obito)
 
         const response = await connection.query({
-            text: 'UPDATE "obito" SET name = $1, freguesia = $2, diafuneral = $3, horafuneral = $4, diamissa = $5, horamissa = $6, photo = $7, igrejaid = $8, capelaid = $9 WHERE obitoid = $10 RETURNING *',
-            values: [obito.name, obito.freguesia, obito.diafuneral, obito.horafuneral, obito.diamissa, obito.horamissa, obito.photo, obito.igrejaid, obito.capelaid, obito.obitoid]
+            text: 'UPDATE "obito" SET name = $1, freguesia = $2, diafuneral = $3, horafuneral = $4, diamissa = $5, horamissa = $6, igrejaid = $7, capelaid = $8 WHERE obitoid = $9 RETURNING *',
+            values: [obito.name, obito.freguesia, obito.diafuneral, obito.horafuneral, obito.diamissa, obito.horamissa, obito.igrejaid, obito.capelaid, obito.obitoid]
         })
 
         await connection.end()

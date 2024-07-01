@@ -9,9 +9,9 @@ class EditObitoController {
         let editObitoCommand = this.editObitoCommand
         return async function (req, res) {
             let obitoid = req.params.obitoid
-            let { name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, photo, funerariaid } = req.body
+            let { name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, funerariaid } = req.body
 
-            const obitoUpdate = await editObitoCommand.execute({ name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, photo, funerariaid, obitoid })
+            const obitoUpdate = await editObitoCommand.execute({ name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, funerariaid, obitoid })
 
             if (!obitoUpdate.success) {
                 return res.status(400).json({ error: obitoUpdate.error })

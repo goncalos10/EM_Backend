@@ -11,7 +11,7 @@ class CreateObitoController {
         let getMyFunerariasQuery = this.getMyFunerariasQuery
 
         return async function (req, res) {
-            let { name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, photo, funerariaid } = req.body
+            let { name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, funerariaid } = req.body
             let url = utils.generateURL(name)
 
             const funeraria = await getMyFunerariasQuery.execute(req.user)
@@ -27,7 +27,7 @@ class CreateObitoController {
                 return res.status(403).json({ error: 'Its not your funeraria.' })
             }
 
-            const obito = await createObitoCommand.execute({ name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, photo, url, funerariaid })
+            const obito = await createObitoCommand.execute({ name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, url, funerariaid })
 
             if (!obito.success) {
                 return res.status(400).json({ error: obito.error })

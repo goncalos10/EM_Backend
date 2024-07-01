@@ -5,9 +5,9 @@ class CreateObitoCommand {
         this.obitoRepository = obitoRepository
     }
 
-    async execute({ name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, photo, url, funerariaid }) {
+    async execute({ name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, url, funerariaid }) {
         try {
-            const obito = new Obito({ name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, photo, url, funerariaid })
+            const obito = new Obito({ name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, url, funerariaid })
             const createdObito = await this.obitoRepository.create(obito)
 
             return { success: true, data: createdObito }
