@@ -1,9 +1,11 @@
 class Comentario {
-    constructor({ id, userid, obitoid, comment }) {
-        this.id = id
+    constructor({ commentid, userid, obitoid, commenttext, username, funerariaid }) {
+        this.commentid = commentid
         this.userid = userid
         this.obitoid = obitoid
-        this.comment = comment
+        this.funerariaid = funerariaid
+        this.commenttext  = commenttext
+        this.username = username 
     }
 }
 module.exports = Comentario

@@ -16,9 +16,20 @@ class UserRepository {
             values: [email]
         })
 
-        await connection.end()
+        
 
         const result = await response.rows[0]
+
+        if(result.roleid === 2 || result.roleid === 1) {
+            const funerarias = await connection.query({
+                text: 'SELECT * FROM "funeraria" WHERE userid = $1',
+                values: [result.userid]
+            })
+
+            result.funerarias = funerarias.rows.map(funeraria => funeraria.funerariaid)
+        }
+
+        await connection.end()
 
         if (result) {
             return new User(result)

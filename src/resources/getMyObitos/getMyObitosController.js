@@ -1,14 +1,10 @@
-const utils = require("../../common/utils")
-
 class GetMyObitosController {
-    constructor(getMyObitosQuery, getMyFunerariasQuery) {
+    constructor(getMyObitosQuery) {
         this.getMyObitosQuery = getMyObitosQuery
-        this.getMyFunerariasQuery = getMyFunerariasQuery
     }
 
     execute() {
         let getMyObitosQuery = this.getMyObitosQuery
-        let getMyFunerariasQuery = this.getMyFunerariasQuery
 
         return async function (req, res) {
 
@@ -16,16 +12,8 @@ class GetMyObitosController {
 
             funerariaid = parseInt(funerariaid)
 
-            const funeraria = await getMyFunerariasQuery.execute(req.user)
-            if (!funeraria.success) {
-                return res.status(500).json({ error: funeraria.error })
-            }
 
-            let funerarias = funeraria.data.map((funeraria) => {
-                return funeraria.funerariaid
-            })
-
-            if (!funerarias.includes(funerariaid)) {
+            if (!req.user.funerarias.includes(funerariaid)) {
                 return res.status(403).json({ error: 'Its not your funeraria.' })
             }
 

@@ -1,29 +1,21 @@
 const utils = require("../../common/utils")
 
 class CreateObitoController {
-    constructor(createObitoCommand, getMyFunerariasQuery) {
+    constructor(createObitoCommand) {
         this.createObitoCommand = createObitoCommand
-        this.getMyFunerariasQuery = getMyFunerariasQuery
+        
     }
 
     execute() {
         let createObitoCommand = this.createObitoCommand
-        let getMyFunerariasQuery = this.getMyFunerariasQuery
+        
 
         return async function (req, res) {
             let { name, freguesia, diafuneral, horafuneral, diamissa, horamissa, igrejaid, capelaid, funerariaid } = req.body
             let url = utils.generateURL(name)
 
-            const funeraria = await getMyFunerariasQuery.execute(req.user)
-            if (!funeraria.success) {
-                return res.status(500).json({ error: funeraria.error })
-            }
 
-            let funerarias = funeraria.data.map((funeraria) => {
-                return funeraria.funerariaid
-            })
-
-            if (!funerarias.includes(funerariaid)) {
+            if (!req.user.funerarias.includes(funerariaid)) {
                 return res.status(403).json({ error: 'Its not your funeraria.' })
             }
 

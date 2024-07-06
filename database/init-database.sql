@@ -51,12 +51,12 @@ CREATE TABLE obitolocal (
   PRIMARY KEY (obitoid, 
   localid));
 
-CREATE TABLE comentario (
-  comentarioid SERIAL NOT NULL, 
+CREATE TABLE comment (
+  commentid SERIAL NOT NULL, 
   userid       int4 NOT NULL, 
   obitoid      int4 NOT NULL, 
-  comentario   varchar(150) NOT NULL, 
-  PRIMARY KEY (comentarioid));
+  commenttext  varchar(150) NOT NULL, 
+  PRIMARY KEY (commentid));
 
 CREATE TABLE lembranca (
   userid  int4 NOT NULL, 
@@ -70,5 +70,5 @@ ALTER TABLE obitolocal ADD CONSTRAINT FKObitoLocal691556 FOREIGN KEY (obitoid) R
 ALTER TABLE obitolocal ADD CONSTRAINT FKObitoLocal998434 FOREIGN KEY (localid) REFERENCES "local" (localid);
 ALTER TABLE lembranca ADD CONSTRAINT FKLembranca225433 FOREIGN KEY (userid) REFERENCES "user" (userid);
 ALTER TABLE lembranca ADD CONSTRAINT FKLembranca912248 FOREIGN KEY (obitoid) REFERENCES obito (obitoid);
-ALTER TABLE comentario ADD CONSTRAINT FKComentario206127 FOREIGN KEY (userid) REFERENCES "user" (userid);
-ALTER TABLE comentario ADD CONSTRAINT FKComentario931554 FOREIGN KEY (obitoid) REFERENCES obito (obitoid);
+ALTER TABLE comment ADD CONSTRAINT FKComentario206127 FOREIGN KEY (userid) REFERENCES "user" (userid);
+ALTER TABLE comment ADD CONSTRAINT FKComentario931554 FOREIGN KEY (obitoid) REFERENCES obito (obitoid);

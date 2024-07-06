@@ -3,7 +3,7 @@ const Memoria = require('../entities/memoria')
 const Local = require('../entities/local')
 
 class User {
-    constructor({ userid, name, email, password, address, city, roleid }) {
+    constructor({ userid, name, email, password, address, city, roleid, funerarias}) {
         this.userid = userid
         this.name = name
         this.email = email
@@ -11,6 +11,7 @@ class User {
         this.address = address
         this.city = city
         this.roleid = roleid
+        this.funerarias = funerarias || []
     }
 
     static validateUser(user) {
@@ -44,8 +45,9 @@ class User {
         return new Memoria({ userid: this.userid, obitoid: obito.id })
     }
 
-    createComment(obito, comment) {
-        return new Comentario({ userid: this.userid, obitoid: obito.id, comment: comment })
+    createComment(obito, commenttext) {
+        console.log(obito)
+        return new Comentario({ userid: this.userid, obitoid: obito.obitoid, commenttext : commenttext })
     }
 
     edit(user) {
