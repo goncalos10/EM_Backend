@@ -58,7 +58,7 @@ CREATE TABLE comment (
   commenttext  varchar(150) NOT NULL, 
   PRIMARY KEY (commentid));
 
-CREATE TABLE lembranca (
+CREATE TABLE memoria (
   userid  int4 NOT NULL, 
   obitoid int4 NOT NULL, 
   PRIMARY KEY (userid, 
@@ -68,7 +68,7 @@ ALTER TABLE funeraria ADD CONSTRAINT FKFuneraria157253 FOREIGN KEY (userid) REFE
 ALTER TABLE obito ADD CONSTRAINT FKObito32372 FOREIGN KEY (funerariaid) REFERENCES funeraria (funerariaid);
 ALTER TABLE obitolocal ADD CONSTRAINT FKObitoLocal691556 FOREIGN KEY (obitoid) REFERENCES obito (obitoid);
 ALTER TABLE obitolocal ADD CONSTRAINT FKObitoLocal998434 FOREIGN KEY (localid) REFERENCES "local" (localid);
-ALTER TABLE lembranca ADD CONSTRAINT FKLembranca225433 FOREIGN KEY (userid) REFERENCES "user" (userid);
-ALTER TABLE lembranca ADD CONSTRAINT FKLembranca912248 FOREIGN KEY (obitoid) REFERENCES obito (obitoid);
+ALTER TABLE memoria ADD CONSTRAINT FKMemoria225433 FOREIGN KEY (userid) REFERENCES "user" (userid);
+ALTER TABLE memoria ADD CONSTRAINT FKMemoria912248 FOREIGN KEY (obitoid) REFERENCES obito (obitoid);
 ALTER TABLE comment ADD CONSTRAINT FKComentario206127 FOREIGN KEY (userid) REFERENCES "user" (userid);
 ALTER TABLE comment ADD CONSTRAINT FKComentario931554 FOREIGN KEY (obitoid) REFERENCES obito (obitoid);

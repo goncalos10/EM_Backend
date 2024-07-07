@@ -1,6 +1,5 @@
 class Memoria {
-    constructor({ id, userid, obitoid }) {
-        this.id = id
+    constructor({ userid, obitoid }) {
         this.userid = userid
         this.obitoid = obitoid
     }

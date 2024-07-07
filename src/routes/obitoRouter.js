@@ -1,6 +1,8 @@
 const express = require('express')
 const Obito = require('../common/entities/obito')
 const Funeraria = require('../common/entities/funeraria')
+const Memoria = require('../common/entities/memoria')
+const MemoriaRepository = require('../repositories/MemoriaRepository')
 const ObitoRepository = require('../repositories/ObitoRepository')
 const CommentRepository = require('../repositories/CommentRepository')
 const CreateObitoCommand = require('../resources/createObito/createObitoCommand')
@@ -21,10 +23,15 @@ const EditCommentCommand = require('../resources/editComment/editCommentCommand'
 const EditCommentController = require('../resources/editComment/editCommentController')
 const DeleteCommentCommand = require('../resources/deleteComment/deleteCommentCommand')
 const DeleteCommentController = require('../resources/deleteComment/deleteCommentController')
+const ChangeMemoriaCommand = require('../resources/changeMemoria/changeMemoriaCommand')
+const ChangeMemoriaController = require('../resources/changeMemoria/changeMemoriaController')
+const GetMyMemoriasQuery = require('../resources/getMyMemorias/getMyMemoriasQuery')
+const GetMyMemoriasController = require('../resources/getMyMemorias/getMyMemoriasController')
 
 require('dotenv').config()
 
 const router = express.Router()
+const memoriaRepository = new MemoriaRepository(process.env.DATABASE_URL)
 const commentRepository = new CommentRepository(process.env.DATABASE_URL)
 const funerariaRepository = new FunerariaRepository(process.env.DATABASE_URL)
 const obitoRepository = new ObitoRepository(process.env.DATABASE_URL)
@@ -48,6 +55,12 @@ const editCommentController = new EditCommentController(editCommentCommand)
 const deleteCommentCommand = new DeleteCommentCommand(commentRepository)
 const deleteCommentController = new DeleteCommentController(deleteCommentCommand)
 
+const changeMemoriaCommand = new ChangeMemoriaCommand(memoriaRepository)
+const changeMemoriaController = new ChangeMemoriaController(changeMemoriaCommand)
+
+const getMyMemoriasQuery = new GetMyMemoriasQuery(memoriaRepository)
+const getMyMemoriasController = new GetMyMemoriasController(getMyMemoriasQuery)
+
 const multerconfig = require('../common/multer-config')
 const { validateUser } = require('../middlewares/ValidateUser')
 
@@ -59,6 +72,8 @@ router.get("/comments/:obitoid", getObitosCommentsController.execute())
 router.get('/:funerariaid', validateUser, getMyObitosController.execute())
 router.put('/edit/:obitoid', validateUser, editObitoController.execute())
 router.put('/photo/:obitoid', validateUser, multerconfig, createObitoPhotoController.execute())
+router.post('/memoria/:obitoid', validateUser, changeMemoriaController.execute()) // POST?
+router.get('/memorias/list', validateUser, getMyMemoriasController.execute())
 
 
 module.exports = router
