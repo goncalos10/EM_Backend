@@ -6,18 +6,15 @@ class GetMyMemoriasQuery {
         this.memoriaRepository = memoriaRepository
     }
 
-    async execute() {
+    async execute(userid) {
 
-        return async function (req, res) {
-            let userid = req.user.id
-            console.log(userid)
-            try {
-                const memorias = (await this.memoriaRepository.listUserMemorias(userid)) || []
-                return { success: true, data: memorias }
 
-            } catch (error) {
-                return { success: false, error: error.message }
-            }
+        try {
+            const memorias = (await this.memoriaRepository.listUserMemorias(userid)) || []
+            return { success: true, data: memorias }
+
+        } catch (error) {
+            return { success: false, error: error.message }
         }
     }
 }

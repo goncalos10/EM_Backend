@@ -72,7 +72,7 @@ router.get("/comments/:obitoid", getObitosCommentsController.execute())
 router.get('/:funerariaid', validateUser, getMyObitosController.execute())
 router.put('/edit/:obitoid', validateUser, editObitoController.execute())
 router.put('/photo/:obitoid', validateUser, multerconfig, createObitoPhotoController.execute())
-router.post('/memoria/:obitoid', validateUser, changeMemoriaController.execute()) // POST?
+router.patch('/memoria/:obitoid', validateUser, changeMemoriaController.execute()) // POST?
 router.get('/memorias/list', validateUser, getMyMemoriasController.execute())
 
 
