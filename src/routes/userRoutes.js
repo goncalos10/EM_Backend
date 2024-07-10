@@ -26,7 +26,7 @@ const deleteUserController = new DeleteUserController(deleteUserCommand)
 
 router.post('/', createUserController.execute())
 router.post('/auth', loginController.execute())
-router.put('/', validateUser, updateUserController.execute())
+router.put('/:userid', validateUser, updateUserController.execute())
 router.delete('/:userid', validateUser, deleteUserController.execute())
 router.get('/', validateUser, (req, res) => {
     return res.status(200).json(req.user)

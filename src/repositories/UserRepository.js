@@ -16,11 +16,11 @@ class UserRepository {
             values: [email]
         })
 
-        
+
 
         const result = await response.rows[0]
 
-        if(result.roleid === 2 || result.roleid === 1) {
+        if (result.roleid === 2 || result.roleid === 1) {
             const funerarias = await connection.query({
                 text: 'SELECT * FROM "funeraria" WHERE userid = $1',
                 values: [result.userid]
@@ -84,6 +84,20 @@ class UserRepository {
         await connection.end()
 
         return true
+
+    }
+
+    async listAllFunerariasUsers() {
+        const connection = new pg.Client(this.url)
+        await connection.connect()
+
+        const response = await connection.query({
+            text: 'SELECT * FROM "user" WHERE roleid = 2'
+        })
+
+        await connection.end()
+
+        return response.rows
 
     }
 
