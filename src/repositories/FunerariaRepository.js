@@ -77,6 +77,25 @@ class FunerariaRepository {
 
     }
 
+    async findAllFunerarias() {
+        const connection = new pg.Client(this.url)
+        await connection.connect()
+
+        const response = await connection.query({
+            text: 'SELECT * FROM "funeraria" WHERE deleted = false'
+        })
+
+        await connection.end()
+
+        const result = await response.rows
+
+        if (result) {
+            return result
+        }
+
+        return null
+    }
+
     async findFunerariasByUserID(userid) {
         const connection = new pg.Client(this.url)
         await connection.connect()
