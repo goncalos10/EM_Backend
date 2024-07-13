@@ -31,11 +31,13 @@ const getUsersFunerariasController = new GetUsersFunerariasController(getUsersFu
 const getMyFunerariasQuery = new GetMyFunerariasQuery(funerariasRepository)
 const getMyFunerariasController = new GetMyFunerariasController(getMyFunerariasQuery)
 
-router.post('/locais', createLocalController.execute())
-router.put('/locais/:localid', editLocalController.execute())
-router.get('/locais/:localtipo', getLocaisController.execute())
-router.get('/usersFunerarias', getUsersFunerariasController.execute())
-router.get('/funerarias', getMyFunerariasController.execute())
+const { validateUser } = require('../middlewares/ValidateUser')
+
+router.post('/locais', validateUser, createLocalController.execute())
+router.put('/locais/:localid', validateUser, editLocalController.execute())
+router.get('/locais/:localtipo', validateUser, getLocaisController.execute())
+router.get('/usersFunerarias', validateUser, getUsersFunerariasController.execute())
+router.get('/funerarias', validateUser, getMyFunerariasController.execute())
 
 
 module.exports = router
