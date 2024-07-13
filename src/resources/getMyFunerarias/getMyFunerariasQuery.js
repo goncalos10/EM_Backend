@@ -9,7 +9,7 @@ class GetMyFunerariasQuery {
     async execute(user) {
         try {
             if (user.roleid === 1) {
-                let funerariasUser = (await this.funerariaRepository.findAllFunerarias()) || []
+                const funerariasUser = (await this.funerariaRepository.findAllFunerarias()) || []
                 return { success: true, data: funerariasUser }
             }
             const funerariasUser = (await this.funerariaRepository.findFunerariasByUserID(user.userid)) || []
