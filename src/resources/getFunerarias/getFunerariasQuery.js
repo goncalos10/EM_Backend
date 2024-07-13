@@ -8,10 +8,11 @@ class GetMyFunerariasQuery {
 
     async execute(user) {
         try {
+            let funerariasUser = []
             if (user === 0) {
-                let funerariasUser = (await this.funerariaRepository.findAllFunerarias()) || []
+                funerariasUser = (await this.funerariaRepository.findAllFunerarias()) || []
             } else {
-                let funerariasUser = (await this.funerariaRepository.findFunerariasByUserID(user.userid)) || []
+                funerariasUser = (await this.funerariaRepository.findFunerariasByUserID(user.userid)) || []
             }
 
             return { success: true, data: funerariasUser }
