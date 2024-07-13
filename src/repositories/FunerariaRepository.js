@@ -89,6 +89,8 @@ class FunerariaRepository {
 
         const result = await response.rows
 
+        console.log(result)
+
         if (result) {
             return result
         }
