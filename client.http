@@ -1,0 +1,14 @@
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+    "name": "Admin",
+    "email": "admin@eternamemoria.pt",
+    "password": "123456789",
+    "address": "Rua de Cima",
+    "city": "barcelos",
+    "roleid": "1"
+}
+
+POST http://localhost:5000/users/auth
+C
